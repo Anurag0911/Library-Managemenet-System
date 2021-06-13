@@ -1,0 +1,71 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content %}
+<h1 align="center">Members</h1>
+
+
+
+<form method="POST" align="center">
+  <input 
+  name="name" 
+  id="name" 
+  placeholder="Enter name">
+</input>
+<input 
+  name="phone" 
+  id="phone"
+  placeholder="Enter phone">
+</input>
+  
+<input 
+  name="email" 
+  id="email"
+  placeholder="Enter email">
+</input>
+<input 
+  name="fine" 
+  id="fine"
+  placeholder="Enter fine">
+</input>
+    <button type="submit" >Add</button>
+</form>
+<ul id="members">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>memID</th>
+        <th>name</th>
+        <th>phone</th>
+        <th>email</th>
+        <th>fine</th>
+        <th>date</th>
+        <th>user_id</th>
+        <th>remove</th>
+
+      </tr>
+    </thead>
+    {% for member in user.Members %}
+    <tbody>
+      <tr>
+        <td>{{ member.memID }}</td>
+        <td>{{ member.name }}</td>
+        <td>{{ member.phone }}</td>
+        <td>{{ member.email }}</td>
+        <td>{{ member.fine }}</td>
+        <td>{{ member.date }}</td>
+        <td>{{ member.user_id }}</td>
+        <td><form method="post" action="{{ url_for('operations.delete_member', memID=member.memID) }}">
+          <input class="btn" type="submit" name="delete" value="Delete">
+      </form></td>
+        
+      </tr>
+    </tbody>
+    {% endfor %}
+  </table>
+
+    
+  </li>
+</ul>
+
+
+{% endblock %}
+
+

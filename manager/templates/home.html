@@ -1,0 +1,92 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content %}
+
+
+
+<h1 align="center">Books</h1>
+
+<form method="POST" align="center">
+  <input 
+  name="title" 
+  id="title" 
+  placeholder="Enter title">
+</input>
+<input 
+  name="authors" 
+  id="authors"
+  placeholder="Enter authors">
+</input>
+  
+<input 
+  name="isbn" 
+  id="isbn"
+  placeholder="Enter isbn">
+</input>
+<input 
+  name="publisher" 
+  id="publisher"
+  placeholder="Enter publisher">
+</input>
+<input 
+  name="num_pages" 
+  id="num_pages"
+  placeholder="Enter num_pages">
+</input>
+<input 
+  name="stock" 
+  id="stock"
+  placeholder="Enter stock">
+</input>
+<input 
+  name="data" 
+  id="data"
+  placeholder="Enter data">
+</input>
+    <button type="submit" >Add</button>
+</form>
+
+<ul id="Books">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>bookID</th>
+        <th>title</th>
+        <th>authors</th>
+        <th>isbn</th>
+        <th>publisher</th>
+        <th>num_pages</th>
+        <th>stock</th>
+        <th>data</th>
+        <th>date</th>
+        <th>user_id</th>
+        <th>remove</th>
+
+
+      </tr>
+    </thead>
+    {% for Book in user.Books %}
+    <tbody>
+      <tr>
+        <td>{{ Book.bookID }}</td>
+        <td>{{ Book.title }}</td>
+        <td>{{ Book.authors }}</td>
+        <td>{{ Book.isbn }}</td>
+        <td>{{ Book.publisher }}</td>
+        <td>{{ Book.num_pages }}</td>
+        <td>{{ Book.stock }}</td>
+        <td>{{ Book.data }}</td>
+        <td>{{ Book.date }}</td>
+        <td>{{ Book.user_id }}</td>
+        <td><form method="post" action="{{ url_for('operations.delete_books', bookID=Book.bookID) }}">
+          <input class="btn" type="submit" name="delete" value="Delete">
+      </form></td>
+
+      </tr>
+    </tbody>
+    {% endfor %}
+  </table>
+
+    
+  </li>
+</ul>
+
+{% endblock %}

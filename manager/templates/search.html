@@ -1,0 +1,147 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content %}
+
+
+
+<h1 align="center">Search</h1>
+<form method="POST" align="center">
+  <input 
+  name="search" 
+  id="search" 
+  placeholder="Enter search">
+</input>
+
+
+    <button type="submit" >Search</button>
+</form>
+
+<ul id="Books">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>bookID</th>
+        <th>title</th>
+        <th>authors</th>
+        <th>isbn</th>
+        <th>publisher</th>
+        <th>num_pages</th>
+        <th>stock</th>
+        <th>data</th>
+        <th>date</th>
+        <th>user_id</th>
+        <th>remove</th>
+
+
+      </tr>
+    </thead>
+    {% for Book in books %}
+    <tbody>
+      <tr>
+        <td>{{ Book.bookID }}</td>
+        <td>{{ Book.title }}</td>
+        <td>{{ Book.authors }}</td>
+        <td>{{ Book.isbn }}</td>
+        <td>{{ Book.publisher }}</td>
+        <td>{{ Book.num_pages }}</td>
+        <td>{{ Book.stock }}</td>
+        <td>{{ Book.data }}</td>
+        <td>{{ Book.date }}</td>
+        <td>{{ Book.user_id }}</td>
+        <td><form method="post" action="{{ url_for('operations.delete_books', bookID=Book.bookID) }}">
+          <input class="btn" type="submit" name="delete" value="Delete">
+      </form></td>
+
+      </tr>
+    </tbody>
+    {% endfor %}
+  </table>
+
+    
+  </li>
+</ul>
+
+
+
+
+
+<ul id="trans">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>transID</th>
+        <th>book_name</th>
+        <th>member_name</th>
+        <th>iss_date</th>
+        <th>ret_date</th>
+        <th>rent</th>
+        <th>fine</th>
+        <th>remove</th>
+
+      </tr>
+    </thead>
+    {% for tran in trans %}
+    <tbody>
+      <tr>
+        <td>{{ tran.transID }}</td>
+        <td>{{ tran.book_name }}</td>
+        <td>{{ tran.member_name }}</td>
+        <td>{{ tran.iss_date }}</td>
+        <td>{{ tran.ret_date }}</td>
+        <td>{{ tran.rent }}</td>
+        <td>{{ tran.fine }}</td>
+        <td>{{ tran.remove }}</td>
+        <td><form method="post" action="{{ url_for('operations.delete_trans', transID=tran.transID) }}")>
+          <input class="btn" type="submit" name="delete" value="Delete">
+      </form></td>
+      </tr>
+    </tbody>
+    {% endfor %}
+  </table>
+
+    
+  </li>
+</ul>
+
+<h1 align="center">Members</h1>
+<ul id="members">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>memID</th>
+        <th>name</th>
+        <th>phone</th>
+        <th>email</th>
+        <th>fine</th>
+        <th>date</th>
+        <th>user_id</th>
+        <th>remove</th>
+
+      </tr>
+    </thead>
+    {% for member in members %}
+    <tbody>
+      <tr>
+        <td>{{ member.memID }}</td>
+        <td>{{ member.name }}</td>
+        <td>{{ member.phone }}</td>
+        <td>{{ member.email }}</td>
+        <td>{{ member.fine }}</td>
+        <td>{{ member.date }}</td>
+        <td>{{ member.user_id }}</td>
+        <td><form method="post" action="{{ url_for('operations.delete_member', memID=member.memID) }}">
+          <input class="btn" type="submit" name="delete" value="Delete">
+      </form></td>
+        
+      </tr>
+    </tbody>
+    {% endfor %}
+  </table>
+
+    
+  </li>
+</ul>
+
+
+
+{% endblock %}
+
+
