@@ -2,15 +2,45 @@ from flask import Blueprint, render_template, request, redirect, flash, url_for
 from flask_login import login_required, current_user
 import json
 import requests
+from collections import Counter
 
 from .models import Books, Members, Trans
 from . import db
 
 operations = Blueprint('operations', __name__)
 
+
+
+
+
+
+
+
+
+# Report
+@operations.route('/report', methods=['GET', 'POST'])
+@login_required
+def report():
+    trans = Trans.query.all()
+    memfreq = {}
+    bookfreq = {}
+    for tran in trans:
+        mem = Members.query.filter_by(memID = tran.mem_id).first()
+        book = Books.query.filter_by(bookID = tran.book_id).first()
+        if mem in memfreq:
+            memfreq[mem] += 1
+        else:
+            memfreq[mem] = 1
+        
+        if book in bookfreq:
+            bookfreq[book] += 1
+        else:
+            bookfreq[book] = 1
+    topmem = Counter(memfreq).most_common(10) 
+    topbook = Counter(bookfreq).most_common(10)
+    return render_template("report.html", user=current_user,topmem=topmem,topbook=topbook)
+
 # search
-
-
 @operations.route('/search', methods=['GET', 'POST'])
 @login_required
 def trans():
