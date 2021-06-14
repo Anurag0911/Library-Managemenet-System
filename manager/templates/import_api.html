@@ -4,21 +4,18 @@
 </h1>
 
 
-<form method="POST" align="center">
-  
-  
-  
-  <input 
-  name="search" 
-  id="search" 
-  placeholder="Enter search">
-</input>
-<input 
-  name="search_by" 
-  id="search_by" 
-  placeholder="Enter search_by">
-</input>
-    <button type="submit" >Add</button>
+<form method="POST">
+
+  <div class="form-group">
+    <label for="search_by">Search By</label>
+    <input type="text" class="form-control" id="search_by" name="search_by" placeholder="Enter search_by" />
+  </div>
+  <div class="form-group">
+    <label for="search">Search</label>
+    <input type="text" class="form-control" id="search" name="search" placeholder="Enter search" />
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 <ul id="Passwords">
   <table class="table">
@@ -61,7 +58,7 @@
     {% endfor %}
   </table>
 
-    
+
   </li>
 </ul>
 

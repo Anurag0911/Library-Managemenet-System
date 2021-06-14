@@ -4,14 +4,11 @@
 
 <h1 align="center">Search</h1>
 <form method="POST" align="center">
-  <input 
-  name="search" 
-  id="search" 
-  placeholder="Enter search">
-</input>
+  <input name="search" id="search" placeholder="Enter search">
+  </input>
 
 
-    <button type="submit" >Search</button>
+  <button type="submit" class="btn btn-primary">Search</button>
 </form>
 
 <ul id="Books">
@@ -46,16 +43,18 @@
         <td>{{ Book.data }}</td>
         <td>{{ Book.date }}</td>
         <td>{{ Book.user_id }}</td>
-        <td><form method="post" action="{{ url_for('operations.delete_books', bookID=Book.bookID) }}">
-          <input class="btn" type="submit" name="delete" value="Delete">
-      </form></td>
+        <td>
+          <form method="post" action="{{ url_for('operations.delete_books', bookID=Book.bookID) }}">
+            <input class="btn" type="submit" name="delete" value="Delete">
+          </form>
+        </td>
 
       </tr>
     </tbody>
     {% endfor %}
   </table>
 
-    
+
   </li>
 </ul>
 
@@ -89,15 +88,17 @@
         <td>{{ tran.rent }}</td>
         <td>{{ tran.fine }}</td>
         <td>{{ tran.remove }}</td>
-        <td><form method="post" action="{{ url_for('operations.delete_trans', transID=tran.transID) }}")>
-          <input class="btn" type="submit" name="delete" value="Delete">
-      </form></td>
+        <td>
+          <form method="post" action="{{ url_for('operations.delete_trans', transID=tran.transID) }}" )>
+            <input class="btn" type="submit" name="delete" value="Delete">
+          </form>
+        </td>
       </tr>
     </tbody>
     {% endfor %}
   </table>
 
-    
+
   </li>
 </ul>
 
@@ -127,21 +128,21 @@
         <td>{{ member.fine }}</td>
         <td>{{ member.date }}</td>
         <td>{{ member.user_id }}</td>
-        <td><form method="post" action="{{ url_for('operations.delete_member', memID=member.memID) }}">
-          <input class="btn" type="submit" name="delete" value="Delete">
-      </form></td>
-        
+        <td>
+          <form method="post" action="{{ url_for('operations.delete_member', memID=member.memID) }}">
+            <input class="btn" type="submit" name="delete" value="Delete">
+          </form>
+        </td>
+
       </tr>
     </tbody>
     {% endfor %}
   </table>
 
-    
+
   </li>
 </ul>
 
 
 
 {% endblock %}
-
-

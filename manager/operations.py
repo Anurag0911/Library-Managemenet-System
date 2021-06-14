@@ -1,54 +1,54 @@
-from flask import Blueprint, render_template, request,redirect, flash, url_for
+from flask import Blueprint, render_template, request, redirect, flash, url_for
 from flask_login import login_required, current_user
 import json
-from .models import Books,Members,Trans
-from . import db
 import requests
+
+from .models import Books, Members, Trans
+from . import db
 
 operations = Blueprint('operations', __name__)
 
-
-
 # search
+
+
 @operations.route('/search', methods=['GET', 'POST'])
 @login_required
 def trans():
-    books= Books.query.all()
-    trans= Trans.query.all()
-    members= Members.query.all()
-   
-    
-
+    books = Books.query.all()
+    trans = Trans.query.all()
+    members = Members.query.all()
     if request.method == 'POST':
         search_by = request.form.get('search')
-        books= Books.query.filter(Books.title.like('%' + search_by + '%'))
-        
-        
+        books = Books.query.filter(Books.title.like('%' + search_by + '%'))
+
         # this funtions needs some attetion
         #trans= Trans.query.filter(Trans.book_name.like('%' + search_by + '%'))
-        members= Members.query.filter(Members.name.like('%' + search_by + '%'))
-    
-    
-    return render_template("search.html", user=current_user,books=books, trans=trans,members=members)
+        members = Members.query.filter(
+            Members.name.like('%' + search_by + '%'))
 
+    return render_template("search.html", user=current_user, books=books, trans=trans, members=members)
 
 
 # for the API
-@operations.route('/import_api', methods=['GET','POST'])
+@operations.route('/import_api', methods=['GET', 'POST'])
 @login_required
 def import_api():
-     #https://frappe.io/api/method/frappe-library/json?authors=j
+    # https://frappe.io/api/method/frappe-library/json?authors=j
 
     if request.method == 'POST':
+
         search_by = request.form.get('search_by')
         search = request.form.get('search')
-        BASE = "https://frappe.io/api/method/frappe-library"
-        print(BASE + "/json?"+ search_by +"="+ search)
-        response = requests.patch(BASE + "/json?"+ search_by +"="+ search)
+
+        BASE = "https://frappe.io/api/method/frappe-library/json?"
+
+        print(BASE + search_by + "=" + search)
+
+        response = requests.patch(BASE + search_by + "=" + search)
         # print(response.json()["message"])
         response = response.json()["message"]
         # print(len(response))
-        
+
         for book in response:
             bokID = book["bookID"]
             tile = book["title"]
@@ -60,11 +60,12 @@ def import_api():
             data = "book of this lib"
             print(book["bookID"])
             print(book["title"])
-            
+
             if (Books.query.filter_by(bookID=bokID).first() and Books.query.filter_by(title=tile).first()):
                 print("these is one ")
             else:
-                new_Book = Books(bookID=bokID, title=tile, authors=authors, isbn=isbn,publisher=publisher,num_pages=num_pages,stock=stock,data=data, user_id=current_user.id)
+                new_Book = Books(bookID=bokID, title=tile, authors=authors, isbn=isbn, publisher=publisher,
+                                 num_pages=num_pages, stock=stock, data=data, user_id=current_user.id)
                 db.session.add(new_Book)
                 db.session.commit()
         flash('Added!', category='success')
@@ -79,47 +80,23 @@ def delete_trans(transID):
     tran = Trans.query.get_or_404(transID)
     db.session.delete(tran)
     db.session.commit()
-    flash('Item deleted.')
+    flash('Transaction deleted.')
     return redirect(url_for("views.trans"))
+
 
 @operations.route('/delete/<string:bookID>', methods=['POST'])
 def delete_books(bookID):
     Book = Books.query.get_or_404(bookID)
     db.session.delete(Book)
     db.session.commit()
-    flash('Item deleted.')
+    flash('Book deleted.')
     return redirect(url_for("views.home"))
+
 
 @operations.route('/members/delete/<string:memID>', methods=['POST'])
 def delete_member(memID):
     Member = Members.query.get_or_404(memID)
     db.session.delete(Member)
     db.session.commit()
-    flash('Item deleted.')
+    flash('Member deleted.')
     return redirect(url_for("views.members"))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

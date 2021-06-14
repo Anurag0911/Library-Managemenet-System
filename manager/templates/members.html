@@ -3,29 +3,25 @@
 
 
 
-<form method="POST" align="center">
-  <input 
-  name="name" 
-  id="name" 
-  placeholder="Enter name">
-</input>
-<input 
-  name="phone" 
-  id="phone"
-  placeholder="Enter phone">
-</input>
+<form method="POST">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" />
+  </div>
+  <div class="form-group">
+    <label for="tel">Phone</label>
+    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter phone" />
+  </div>
+  <div class="form-group">
+    <label for="email">Email Address</label>
+    <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" />
+  </div>
+  <div class="form-group">
+    <label for="number">Fine</label>
+    <input type="number" class="form-control" id="fine" name="fine" placeholder="Enter fine" />
+  </div>
   
-<input 
-  name="email" 
-  id="email"
-  placeholder="Enter email">
-</input>
-<input 
-  name="fine" 
-  id="fine"
-  placeholder="Enter fine">
-</input>
-    <button type="submit" >Add</button>
+  <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 <ul id="members">
   <table class="table">
@@ -52,20 +48,20 @@
         <td>{{ member.fine }}</td>
         <td>{{ member.date }}</td>
         <td>{{ member.user_id }}</td>
-        <td><form method="post" action="{{ url_for('operations.delete_member', memID=member.memID) }}">
-          <input class="btn" type="submit" name="delete" value="Delete">
-      </form></td>
-        
+        <td>
+          <form method="post" action="{{ url_for('operations.delete_member', memID=member.memID) }}">
+            <input class="btn" type="submit" name="delete" value="Delete">
+          </form>
+        </td>
+
       </tr>
     </tbody>
     {% endfor %}
   </table>
 
-    
+
   </li>
 </ul>
 
 
 {% endblock %}
-
-

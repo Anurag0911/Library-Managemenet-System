@@ -3,62 +3,52 @@
 
 
 
-<form method="POST" align="center">
+<form method="POST">
 
 
-  <select class="form-control"
-  name="book_name" 
-  id="book_name" 
-  placeholder="Enter book_name">
+  <div class="form-group">
+    <label for="book_name">Book Name</label>
+  <select class="form-control" name="book_name" id="book_name" placeholder="Enter book_name">
     {% for Book in user.Books %}
-    <option>
-      <td>
-        {{ Book.title }}
-      </td>
-    </option>
-    {% endfor %}
-    </select>
-
-  <select class="form-control" name="member_name" 
-  id="member_name"
-  >
-    {% for member in user.Members %}
-    <option>
-      <td>
-        {{ member.name }}
-      </td>
+    <option value={{ Book.bookID }}>
+      <td>{{ Book.title }}</td>
     </option>
     {% endfor %}
   </select>
+  </div>
+  <div class="form-group">
+    <label for="book_name">Member Name</label>
+    <select class="form-control" name="member_name" id="member_name">
+      {% for member in user.Members %}
+      <option value={{ member.memID }}>
+        <td>
+          {{ member.name }}
+        </td>
+      </option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="iss_date">iss_date</label>
+    <input type="date" class="form-control" id="iss_date" name="iss_date" placeholder="Enter iss_date" />
+  </div>
+  <div class="form-group">
+    <label for="ret_date">ret_date</label>
+    <input type="date" class="form-control" id="ret_date" name="ret_date" placeholder="Enter ret_date" />
+  </div>
+  <div class="form-group">
+    <label for="rent">rent</label>
+    <input type="number" class="form-control" id="rent" name="rent" placeholder="Enter rent" />
+  </div>
+  <div class="form-group">
+    <label for="fine">fine</label>
+    <input type="number" class="form-control" id="fine" name="fine" placeholder="Enter fine" />
+  </div>
 
-
-<input 
-  name="iss_date" 
-  id="iss_date"
-  placeholder="iss_date">
-</input>
-<input 
-  name="ret_date" 
-  id="ret_date"
-  placeholder="ret_date">
-</input>
-<input 
-  name="rent" 
-  id="rent"
-  placeholder="rent">
-</input>
   
-<input 
-  name="fine" 
-  id="fine"
-  placeholder="fine">
-</input>
-<input 
-  name="fine" 
-  id="fine"
-  placeholder="Enter fine">
-</input>
-    <button type="submit" >Add</button>
+
+
+  <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
 
@@ -90,9 +80,11 @@
         <td>{{ tran.rent }}</td>
         <td>{{ tran.fine }}</td>
         <td>{{ tran.remove }}</td>
-        <td><form method="post" action="{{ url_for('operations.delete_trans', transID=tran.transID) }}")>
-          <input class="btn" type="submit" name="delete" value="Delete">
-      </form></td>
+        <td>
+          <form method="post" action="{{ url_for('operations.delete_trans', transID=tran.transID) }}" )>
+            <input class="btn" type="submit" name="delete" value="Delete">
+          </form>
+        </td>
       </tr>
     </tbody>
     {% endfor %}
@@ -102,5 +94,3 @@
 
 
 {% endblock %}
-
-

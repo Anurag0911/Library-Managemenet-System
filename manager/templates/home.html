@@ -4,44 +4,32 @@
 
 <h1 align="center">Books</h1>
 
-<form method="POST" align="center">
-  <input 
-  name="title" 
-  id="title" 
-  placeholder="Enter title">
-</input>
-<input 
-  name="authors" 
-  id="authors"
-  placeholder="Enter authors">
-</input>
-  
-<input 
-  name="isbn" 
-  id="isbn"
-  placeholder="Enter isbn">
-</input>
-<input 
-  name="publisher" 
-  id="publisher"
-  placeholder="Enter publisher">
-</input>
-<input 
-  name="num_pages" 
-  id="num_pages"
-  placeholder="Enter num_pages">
-</input>
-<input 
-  name="stock" 
-  id="stock"
-  placeholder="Enter stock">
-</input>
-<input 
-  name="data" 
-  id="data"
-  placeholder="Enter data">
-</input>
-    <button type="submit" >Add</button>
+<form method="POST">
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input type="text" class="form-control" id="title" name="title" placeholder="Enter title" />
+  </div>
+  <div class="form-group">
+    <label for="authors">authors</label>
+    <input type="text" class="form-control" id="authors" name="authors" placeholder="Enter authors" />
+  </div>
+  <div class="form-group">
+    <label for="isbn">isbn</label>
+    <input type="number" class="form-control" id="isbn" name="isbn" placeholder="Enter isbn" />
+  </div>
+  <div class="form-group">
+    <label for="publisher">publisher</label>
+    <input type="text" class="form-control" id="publisher" name="publisher" placeholder="Enter publisher" />
+  </div>
+  <div class="form-group">
+    <label for="stock">stock</label>
+    <input type="number" class="form-control" id="stock" name="stock" placeholder="Enter stock" />
+  </div>
+  <div class="form-group">
+    <label for="data">data</label>
+    <input type="text" class="form-control" id="data" name="data" placeholder="Enter data" />
+  </div>
+  <button type="ADD" class="btn btn-primary">Search</button>
 </form>
 
 <ul id="Books">
@@ -49,16 +37,16 @@
     <thead>
       <tr>
         <th>bookID</th>
-        <th>title</th>
-        <th>authors</th>
-        <th>isbn</th>
-        <th>publisher</th>
-        <th>num_pages</th>
-        <th>stock</th>
-        <th>data</th>
-        <th>date</th>
-        <th>user_id</th>
-        <th>remove</th>
+        <th>Title</th>
+        <th>Authors</th>
+        <th>Isbn</th>
+        <th>Publisher</th>
+        <th>Num_pages</th>
+        <th>Stock</th>
+        <th>About</th>
+        <th>Date</th>
+        <th>User_id</th>
+        <th>Remove</th>
 
 
       </tr>
@@ -76,16 +64,19 @@
         <td>{{ Book.data }}</td>
         <td>{{ Book.date }}</td>
         <td>{{ Book.user_id }}</td>
-        <td><form method="post" action="{{ url_for('operations.delete_books', bookID=Book.bookID) }}">
-          <input class="btn" type="submit" name="delete" value="Delete">
-      </form></td>
+        <td>
+
+          <form method="post" action="{{ url_for('operations.delete_books', bookID=Book.bookID) }}">
+            <input class="btn btn-primary" type="submit" name="delete" value="Delete">
+          </form>
+        </td>
 
       </tr>
     </tbody>
     {% endfor %}
   </table>
 
-    
+
   </li>
 </ul>
 
