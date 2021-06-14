@@ -72,7 +72,7 @@ def trans():
 
         mem_id.fine=str(int(fine) + int(mem_id.fine))
         book_id.stock=str(int(book_id.stock)-1)
-        
+
         if len(iss_date) < 1:
             flash('name is too short!', category='error')
         elif int(mem_id.fine) > 500:

@@ -7,9 +7,30 @@
 <form method="POST">
 
   <div class="form-group">
-    <label for="search_by">Search By</label>
-    <input type="text" class="form-control" id="search_by" name="search_by" placeholder="Enter search_by" />
-  </div>
+    <label for="search">Search by</label>
+    <select class="form-control" name="search_by" id="search_by">
+    
+      <option>
+        <td>title</td>
+      </option>
+  
+      <option>
+        <td>authors</td>
+      </option>
+  
+      <option>
+        <td>isbn</td>
+      </option>
+  
+      <option>
+        <td>publisher</td>
+      </option>
+  
+    </select>
+
+
+
+   </div>
   <div class="form-group">
     <label for="search">Search</label>
     <input type="text" class="form-control" id="search" name="search" placeholder="Enter search" />
@@ -26,12 +47,10 @@
         <th>authors</th>
         <th>isbn</th>
         <th>publisher</th>
-        <th>num_pages</th>
         <th>stock</th>
         <th>data</th>
         <th>date</th>
-        <th>user_id</th>
-        <th>remove</th>
+      
 
 
       </tr>
@@ -44,11 +63,9 @@
         <td>{{ Book.authors }}</td>
         <td>{{ Book.isbn }}</td>
         <td>{{ Book.publisher }}</td>
-        <td>{{ Book.num_pages }}</td>
         <td>{{ Book.stock }}</td>
         <td>{{ Book.data }}</td>
         <td>{{ Book.date }}</td>
-        <td>{{ Book.user_id }}</td>
         <!-- <td><form method="post" action="{{ url_for('operations.delete_books', bookID=Book.bookID) }}">
           <input class="btn" type="submit" name="delete" value="Delete">
       </form></td> -->

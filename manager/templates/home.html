@@ -1,54 +1,49 @@
 {% extends "base.html" %} {% block title %}Home{% endblock %} {% block content %}
-
-
-
 <h1 align="center">Books</h1>
 
 <form method="POST">
   <div class="form-group">
     <label for="title">Title</label>
-    <input type="text" class="form-control" id="title" name="title" placeholder="Enter title" />
+    <input type="text" class="form-control" id="title" name="title" placeholder="Enter Title" />
   </div>
   <div class="form-group">
-    <label for="authors">authors</label>
-    <input type="text" class="form-control" id="authors" name="authors" placeholder="Enter authors" />
+    <label for="authors">Authors</label>
+    <input type="text" class="form-control" id="authors" name="authors" placeholder="Enter Authors" />
   </div>
   <div class="form-group">
-    <label for="isbn">isbn</label>
-    <input type="number" class="form-control" id="isbn" name="isbn" placeholder="Enter isbn" />
+    <label for="isbn">Isbn</label>
+    <input type="number" class="form-control" id="isbn" name="isbn" placeholder="Enter Isbn" />
   </div>
   <div class="form-group">
-    <label for="publisher">publisher</label>
-    <input type="text" class="form-control" id="publisher" name="publisher" placeholder="Enter publisher" />
+    <label for="publisher">Publisher</label>
+    <input type="text" class="form-control" id="publisher" name="publisher" placeholder="Enter Publisher" />
   </div>
   <div class="form-group">
-    <label for="stock">stock</label>
-    <input type="number" class="form-control" id="stock" name="stock" placeholder="Enter stock" />
+    <label for="stock">Stock</label>
+    <input type="number" class="form-control" id="stock" name="stock" placeholder="Enter Stock" />
   </div>
   <div class="form-group">
-    <label for="data">data</label>
-    <input type="text" class="form-control" id="data" name="data" placeholder="Enter data" />
+    <label for="data">Data</label>
+    <input type="text" class="form-control" id="data" name="data" placeholder="Enter Data" />
   </div>
-  <button type="ADD" class="btn btn-primary">Search</button>
+  <button type="ADD" class="btn btn-primary">ADD</button>
 </form>
+
+
 
 <ul id="Books">
   <table class="table">
     <thead>
       <tr>
-        <th>bookID</th>
+        <th>ID</th>
         <th>Title</th>
         <th>Authors</th>
         <th>Isbn</th>
         <th>Publisher</th>
-        <th>Num_pages</th>
         <th>Stock</th>
         <th>About</th>
         <th>Date</th>
-        <th>User_id</th>
         <th>Remove</th>
-
-
       </tr>
     </thead>
     {% for Book in user.Books %}
@@ -59,16 +54,16 @@
         <td>{{ Book.authors }}</td>
         <td>{{ Book.isbn }}</td>
         <td>{{ Book.publisher }}</td>
-        <td>{{ Book.num_pages }}</td>
         <td>{{ Book.stock }}</td>
         <td>{{ Book.data }}</td>
         <td>{{ Book.date }}</td>
-        <td>{{ Book.user_id }}</td>
+       
         <td>
 
           <form method="post" action="{{ url_for('operations.delete_books', bookID=Book.bookID) }}">
             <input class="btn btn-primary" type="submit" name="delete" value="Delete">
           </form>
+          
         </td>
 
       </tr>
@@ -79,5 +74,9 @@
 
   </li>
 </ul>
+
+
+
+
 
 {% endblock %}

@@ -1,0 +1,63 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content %}
+<h1 align="center">Report</h1>
+
+
+
+
+
+<ul>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Member ID</th>
+        <th>Member Name</th>
+        <th>No. of Transactions</th>
+
+      </tr>
+    </thead>
+    {% for mem in topmem %}
+    <tbody>
+      <tr>
+
+        <td>{{ mem[0].memID }}</td>
+        <td>{{ mem[0].name }}</td>
+        
+        <td>{{ mem[1] }}</td>
+        
+        <td>
+        </td>
+      </tr>
+    </tbody>
+    {% endfor %}
+  </table>
+  </li>
+</ul>
+
+<ul id="books">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Book ID</th>
+        <th>Book Name</th>
+        <th>No. of Transactions</th>
+
+      </tr>
+    </thead>
+    {% for book in topbook %}
+    <tbody>
+      <tr>
+        <td>{{ book[0].bookID }}</td>
+        <td>{{ book[0].total }}</td>
+        
+        <td>{{ book[1] }}</td>
+        
+        <td>
+        </td>
+      </tr>
+    </tbody>
+    {% endfor %}
+  </table>
+  </li>
+</ul>
+
+{% endblock %}
