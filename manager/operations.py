@@ -15,8 +15,6 @@ operations = Blueprint('operations', __name__)
 
 
 
-
-
 # Report
 @operations.route('/report', methods=['GET', 'POST'])
 @login_required
@@ -51,8 +49,7 @@ def trans():
         search_by = request.form.get('search')
         books = Books.query.filter(Books.title.like('%' + search_by + '%'))
 
-        # this funtions needs some attetion
-        #trans= Trans.query.filter(Trans.book_name.like('%' + search_by + '%'))
+        trans= Trans.query.filter(Trans.book_name.like('%' + search_by + '%'))
         members = Members.query.filter(
             Members.name.like('%' + search_by + '%'))
 
@@ -98,7 +95,7 @@ def import_api():
                                  num_pages=num_pages, stock=stock, data=data, user_id=current_user.id)
                 db.session.add(new_Book)
                 db.session.commit()
-        flash('Added!', category='success')
+        flash('Added all the data!', category='success')
 
     return render_template("import_api.html", user=current_user)
 

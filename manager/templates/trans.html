@@ -80,10 +80,12 @@
         <td>{{ tran.rent }}</td>
         <td>{{ tran.fine }}</td>
         <td>{{ tran.remove }}</td>
+          <td>{{ tran.remove }}</td>
+        
         <td>
           <form method="post" action="{{ url_for('operations.delete_trans', transID=tran.transID) }}" )>
             <input class="btn" type="submit" name="delete" value="Delete">
-          </form>
+          </form>          
         </td>
       </tr>
     </tbody>
