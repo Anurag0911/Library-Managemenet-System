@@ -6,35 +6,34 @@
 <form method="POST">
   <div class="form-group">
     <label for="name">Name</label>
-    <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" />
+    <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" required/>
   </div>
   <div class="form-group">
     <label for="tel">Phone</label>
-    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter phone" />
+    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter phone" required/>
   </div>
   <div class="form-group">
     <label for="email">Email Address</label>
-    <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" />
+    <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required/>
   </div>
   <div class="form-group">
     <label for="number">Fine</label>
-    <input type="number" class="form-control" id="fine" name="fine" placeholder="Enter fine" />
+    <input type="number" class="form-control" id="fine" name="fine" placeholder="Enter fine" required/>
   </div>
   
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 <ul id="members">
-  <table class="table">
+  <table class="table table-striped table-bordered">
     <thead>
       <tr>
-        <th>memID</th>
-        <th>name</th>
-        <th>phone</th>
-        <th>email</th>
-        <th>fine</th>
-        <th>date</th>
-        <th>user_id</th>
-        <th>remove</th>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Fine</th>
+        <th>Date</th>
+        <th>Remove</th>
 
       </tr>
     </thead>
@@ -47,7 +46,6 @@
         <td>{{ member.email }}</td>
         <td>{{ member.fine }}</td>
         <td>{{ member.date }}</td>
-        <td>{{ member.user_id }}</td>
         <td>
           <form method="post" action="{{ url_for('operations.delete_member', memID=member.memID) }}">
             <input class="btn" type="submit" name="delete" value="Delete">

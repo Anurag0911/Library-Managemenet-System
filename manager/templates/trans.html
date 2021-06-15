@@ -8,13 +8,13 @@
 
   <div class="form-group">
     <label for="book_name">Book Name</label>
-  <select class="form-control" name="book_name" id="book_name" placeholder="Enter book_name">
-    {% for Book in user.Books %}
-    <option value={{ Book.bookID }}>
-      <td>{{ Book.title }}</td>
-    </option>
-    {% endfor %}
-  </select>
+    <select class="form-control" name="book_name" id="book_name" placeholder="Enter book_name">
+      {% for Book in user.Books %}
+      <option value={{ Book.bookID }}>
+        <td>{{ Book.title }}</td>
+      </option>
+      {% endfor %}
+    </select>
   </div>
   <div class="form-group">
     <label for="book_name">Member Name</label>
@@ -29,23 +29,23 @@
     </select>
   </div>
   <div class="form-group">
-    <label for="iss_date">iss_date</label>
-    <input type="date" class="form-control" id="iss_date" name="iss_date" placeholder="Enter iss_date" />
+    <label for="iss_date">Issue Date</label>
+    <input type="date" class="form-control" id="iss_date" name="iss_date" placeholder="Enter iss_date" required />
   </div>
   <div class="form-group">
-    <label for="ret_date">ret_date</label>
-    <input type="date" class="form-control" id="ret_date" name="ret_date" placeholder="Enter ret_date" />
+    <label for="ret_date">Return date</label>
+    <input type="date" class="form-control" id="ret_date" name="ret_date" placeholder="Enter ret_date" required />
   </div>
   <div class="form-group">
-    <label for="rent">rent</label>
-    <input type="number" class="form-control" id="rent" name="rent" placeholder="Enter rent" />
+    <label for="rent">Rent</label>
+    <input type="number" class="form-control" id="rent" name="rent" placeholder="Enter rent" required />
   </div>
   <div class="form-group">
-    <label for="fine">fine</label>
-    <input type="number" class="form-control" id="fine" name="fine" placeholder="Enter fine" />
+    <label for="fine">Fine</label>
+    <input type="number" class="form-control" id="fine" name="fine" placeholder="Enter fine" required />
   </div>
 
-  
+
 
 
   <button type="submit" class="btn btn-primary">Submit</button>
@@ -54,18 +54,18 @@
 
 
 
-<ul id="books">
-  <table class="table">
+<ul id="books" >
+  <table class="table table-striped table-bordered">
     <thead>
       <tr>
-        <th>transID</th>
-        <th>book_name</th>
-        <th>member_name</th>
-        <th>iss_date</th>
-        <th>ret_date</th>
-        <th>rent</th>
-        <th>fine</th>
-        <th>remove</th>
+        <th>ID</th>
+        <th>Book Name</th>
+        <th>Member Name</th>
+        <th>Issue Date</th>
+        <th>Return Date</th>
+        <th>Rent</th>
+        <th>Fine</th>
+        <th>Remove</th>
 
       </tr>
     </thead>
@@ -79,13 +79,12 @@
         <td>{{ tran.ret_date }}</td>
         <td>{{ tran.rent }}</td>
         <td>{{ tran.fine }}</td>
-        <td>{{ tran.remove }}</td>
-          <td>{{ tran.remove }}</td>
-        
+     
+
         <td>
           <form method="post" action="{{ url_for('operations.delete_trans', transID=tran.transID) }}" )>
-            <input class="btn" type="submit" name="delete" value="Delete">
-          </form>          
+            <input class="btn btn-primary" type="submit" name="delete" value="Delete">
+          </form>
         </td>
       </tr>
     </tbody>

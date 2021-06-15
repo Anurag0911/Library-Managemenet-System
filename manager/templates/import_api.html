@@ -8,7 +8,7 @@
 
   <div class="form-group">
     <label for="search">Search by</label>
-    <select class="form-control" name="search_by" id="search_by">
+    <select class="form-control" name="search_by" id="search_by" required>
     
       <option>
         <td>title</td>
@@ -33,13 +33,15 @@
    </div>
   <div class="form-group">
     <label for="search">Search</label>
-    <input type="text" class="form-control" id="search" name="search" placeholder="Enter search" />
+    <input type="text" class="form-control" id="search" name="search" placeholder="Enter search" required/>
   </div>
 
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+
+
 <ul id="Passwords">
-  <table class="table">
+  <table class="table table-striped table-bordered">
     <thead>
       <tr>
         <th>bookID</th>

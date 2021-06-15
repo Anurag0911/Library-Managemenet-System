@@ -1,58 +1,54 @@
 {% extends "base.html" %} {% block title %}Home{% endblock %} {% block content %}
 <h1 align="center">Report</h1>
+<hr>
+<h3 align="center">Top Members</h3>
 
 
-
-
+<img src='my_plot.png'>
 
 <ul>
-  <table class="table">
+  
+  <table class="table table-striped table-bordered">
     <thead>
       <tr>
+        <th>Ranking</th>
         <th>Member ID</th>
         <th>Member Name</th>
         <th>No. of Transactions</th>
-
       </tr>
     </thead>
     {% for mem in topmem %}
     <tbody>
       <tr>
-
+        <td>{{ topmem.index(mem)+1 }}</td>
         <td>{{ mem[0].memID }}</td>
         <td>{{ mem[0].name }}</td>
-        
         <td>{{ mem[1] }}</td>
-        
-        <td>
-        </td>
       </tr>
     </tbody>
     {% endfor %}
   </table>
   </li>
 </ul>
+<h3 align="center">Top Books</h3>
 
 <ul id="books">
-  <table class="table">
+  <table class="table table-striped table-bordered">
     <thead>
       <tr>
+        <th>Ranking</th>
         <th>Book ID</th>
         <th>Book Name</th>
         <th>No. of Transactions</th>
-
       </tr>
     </thead>
     {% for book in topbook %}
     <tbody>
       <tr>
+        <td>{{ topbook.index(book)+1 }}</td>
         <td>{{ book[0].bookID }}</td>
-        <td>{{ book[0].total }}</td>
-        
+        <td>{{ book[0].title }}</td>
         <td>{{ book[1] }}</td>
-        
-        <td>
-        </td>
       </tr>
     </tbody>
     {% endfor %}

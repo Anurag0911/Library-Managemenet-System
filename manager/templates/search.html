@@ -6,7 +6,7 @@
 <form method="POST" align="center">
   <div class="form-group">
 
-    <input type="text" class="form-control" id="search" name="search" placeholder="Enter search term" />
+    <input type="text" class="form-control" id="search" name="search" placeholder="Enter search term" required/>
   </div>
   
 
@@ -16,7 +16,7 @@
 <br>
 
 <ul id="Books">
-  <table class="table">
+  <table class="table table-striped table-bordered">
     <thead>
       <tr>
         <th>bookID</th>
@@ -66,18 +66,18 @@
 
 
 
-<ul id="trans">
-  <table class="table">
+<ul id="trans"> 
+  <table class="table table-striped table-bordered">
     <thead>
       <tr>
-        <th>transID</th>
-        <th>book_name</th>
-        <th>member_name</th>
-        <th>iss_date</th>
-        <th>ret_date</th>
-        <th>rent</th>
-        <th>fine</th>
-        <th>remove</th>
+        <th>ID</th>
+        <th>BooK Name</th>
+        <th>Member Name</th>
+        <th>Issue Date</th>
+        <th>Return Date</th>
+        <th>Rent</th>
+        <th>Fine</th>
+        <th>Remove</th>
 
       </tr>
     </thead>
@@ -108,17 +108,16 @@
 
 <h1 align="center">Members</h1>
 <ul id="members">
-  <table class="table">
+  <table class="table table-striped table-bordered">
     <thead>
       <tr>
-        <th>memID</th>
-        <th>name</th>
-        <th>phone</th>
-        <th>email</th>
-        <th>fine</th>
-        <th>date</th>
-        <th>user_id</th>
-        <th>remove</th>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>Fine</th>
+        <th>Date</th>
+        <th>Remove</th>
 
       </tr>
     </thead>
@@ -131,7 +130,6 @@
         <td>{{ member.email }}</td>
         <td>{{ member.fine }}</td>
         <td>{{ member.date }}</td>
-        <td>{{ member.user_id }}</td>
         <td>
           <form method="post" action="{{ url_for('operations.delete_member', memID=member.memID) }}">
             <input class="btn" type="submit" name="delete" value="Delete">
