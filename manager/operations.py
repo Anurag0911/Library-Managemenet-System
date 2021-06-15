@@ -10,49 +10,6 @@ from . import db
 operations = Blueprint('operations', __name__)
 
 
-
-# # Update
-# @operations.route('/update', methods=['GET', 'POST'])
-# @login_required
-# def update():
-#     z=Books.authors
-#     x="aklsjd"
-#     Books.query.filter_by(bookID="41914").update({
-#     z: x,
-#     Books.publisher: 'New York'
-# })
-#     db.session.commit()
-#     flash('Book updated')
-#     return redirect(url_for("views.home"))
-# @operations.route('/update', methods=['GET', 'POST'])
-# @login_required
-# def update_trans():
-#     z=Books.authors
-#     x="aklsjd"
-#     Books.query.filter_by(bookID="41914").update({
-#     z: x,
-#     Books.publisher: 'New York'
-# })
-#     db.session.commit()
-#     flash('Book updated')
-#     return redirect(url_for("views.home"))
-# @operations.route('/update', methods=['GET', 'POST'])
-# @login_required
-# def update():
-#     z=Books.authors
-#     x="aklsjd"
-#     Books.query.filter_by(bookID="41914").update({
-#     z: x,
-#     Books.publisher: 'New York'
-# })
-#     db.session.commit()
-#     flash('Book updated')
-#     return redirect(url_for("views.home"))
-
-
-
-
-
 # Report
 @operations.route('/report', methods=['GET', 'POST'])
 @login_required
