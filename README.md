@@ -10,4 +10,4 @@ password = 1234567890
 these are just for the demo purposes
 
 
-
+Just run the main.py 
