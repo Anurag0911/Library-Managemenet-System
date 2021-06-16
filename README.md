@@ -28,9 +28,13 @@ A Library Management Web Application built in fulfilment of the [Developer Hirin
 Just run the main.py
 
 Make An Account for demo or Please access the library using the following credentials 
+
 email = anurag@gmail.com
+
 password = 1234567890
+
 To login for a demo
+
 ![img (1)](https://user-images.githubusercontent.com/67339426/122246432-2b583b00-cee4-11eb-9a32-72f91b83feb8.png)
 ![img (2)](https://user-images.githubusercontent.com/67339426/122246443-2d21fe80-cee4-11eb-9259-644f208d8786.png)
 ![img (3)](https://user-images.githubusercontent.com/67339426/122246446-2dba9500-cee4-11eb-967d-c3df0e243b68.png)
