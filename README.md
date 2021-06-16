@@ -11,7 +11,7 @@ A Library Management Web Application built in fulfilment of the [Developer Hirin
    ```sh
    pip install -r requirements.txt
    ```
-2. Change directory
+2. Change directory if not in main Directory
    ```sh
     cd Library Managemenet System
    ```
