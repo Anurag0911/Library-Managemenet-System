@@ -26,16 +26,7 @@ python main.py
 ## Viewing The App
 
 Go to `http://127.0.0.1:5000`
-## **Getting Started**
 
-1. Install requirements
-   ```sh
-   pip install -r requirements.txt
-   ```
-2. Run app
-   ```sh
-   python main.py
-   ```
 
 ## **Screenshots:**
 
