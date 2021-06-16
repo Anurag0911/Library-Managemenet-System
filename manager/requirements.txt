@@ -5,4 +5,4 @@ json
 requests
 collections
 pandas
-atplotlib
+matplotlib
