@@ -5,17 +5,28 @@
 
 A Library Management Web Application built in fulfilment of the [Developer Hiring Test for Frappe](https://frappe.io/dev-hiring-test). Allows a librarian to track books and their quantity, members, and transactions.
 (Built with Flask, Jinja, SQLAlchemy)
+## Setup & Installtion
 
-## **Getting Started**
+Make sure you have the latest version of Python installed.
 
-1. Install requirements
-   ```sh
-   pip install -r requirements.txt
-   ```
-2. Run app
-   ```sh
-   python main.py
-   ```
+```bash
+git clone <repo-url>
+```
+
+```bash
+pip install -r requirements.txt
+```
+
+## Running The App
+
+```bash
+python main.py
+```
+
+## Viewing The App
+
+Go to `http://127.0.0.1:5000`
+
 
 ## **Screenshots:**
 
