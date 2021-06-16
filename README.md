@@ -12,22 +12,15 @@ A Library Management Web Application built in fulfilment of the [Developer Hirin
    ```sh
    pip install -r requirements.txt
    ```
-2. Change directory
+2. Run app
    ```sh
-    cd Library Managemenet System
-   ```
-3. Run app
-   ```sh
-   python app.py
+   python main.py
    ```
 
 ## **Screenshots:**
 
 
-
-Just run the main.py
-
-Make An Account for demo or Please access the library using the following credentials 
+Make An Account for demo or Please access the library using the following credentials for login to use the same db as Screebshots
 
 email = anurag@gmail.com
 

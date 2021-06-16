@@ -33,6 +33,7 @@ class Books(db.Model):
 
 
 class Trans(db.Model):
+    """This class defines the table for information of Transcas"""
     transID = db.Column(db.Integer, primary_key=True)
     book_id = db.Column(db.Integer, db.ForeignKey('books.bookID'))
     mem_id = db.Column(db.Integer, db.ForeignKey('members.memID'))
