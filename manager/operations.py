@@ -10,10 +10,39 @@ from . import db
 operations = Blueprint('operations', __name__)
 
 
+
+
+# Update
+@operations.route('/update_books<string:bookID>', methods=['GET', 'POST'])
+@login_required
+def update_books(bookID):  
+    if request.method == 'POST':
+        new_entry = request.form.get('new_entry')
+        Column = request.form.get('flexRadioDefault')
+        print(new_entry)
+        print(Column)
+        que = Books.query.filter_by(bookID=bookID)
+        if Column == "title":
+            que.update({Books.title: new_entry})
+        elif Column == "stock":
+            que.update({Books.stock: new_entry})
+        elif Column == "publisher":
+            que.update({Books.publisher: new_entry})
+        elif Column == "authors":
+            que.update({Books.authors: new_entry})
+        else:
+            flash("Some error occured")
+        db.session.commit()
+        flash('Book updated')
+        return redirect(url_for("views.home"))
+
+
+
 # Report
 @operations.route('/report', methods=['GET', 'POST'])
 @login_required
 def report():
+
     trans = Trans.query.all()
     memfreq = {}
     bookfreq = {}

@@ -1,7 +1,7 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
 {% block title %}
 Home
-{% endblock %} 
+{% endblock %}
 {% block content %}
 <h1 align="center">Books</h1>
 
@@ -12,23 +12,23 @@ Home
   </div>
   <div class="form-group">
     <label for="authors">Authors</label>
-    <input type="text" class="form-control" id="authors" name="authors" placeholder="Enter Authors" required/>
+    <input type="text" class="form-control" id="authors" name="authors" placeholder="Enter Authors" required />
   </div>
   <div class="form-group">
     <label for="isbn">Isbn</label>
-    <input type="number" class="form-control" id="isbn" name="isbn" placeholder="Enter Isbn" required/>
+    <input type="number" class="form-control" id="isbn" name="isbn" placeholder="Enter Isbn" required />
   </div>
   <div class="form-group">
     <label for="publisher">Publisher</label>
-    <input type="text" class="form-control" id="publisher" name="publisher" placeholder="Enter Publisher" required/>
+    <input type="text" class="form-control" id="publisher" name="publisher" placeholder="Enter Publisher" required />
   </div>
   <div class="form-group">
     <label for="stock">Stock</label>
-    <input type="number" class="form-control" id="stock" name="stock" placeholder="Enter Stock" required/>
+    <input type="number" class="form-control" id="stock" name="stock" placeholder="Enter Stock" required />
   </div>
   <div class="form-group">
     <label for="data">Data</label>
-    <input type="text" class="form-control" id="data" name="data" placeholder="Enter Data" required/>
+    <input type="text" class="form-control" id="data" name="data" placeholder="Enter Data" required />
   </div>
   <button type="ADD" class="btn btn-primary">ADD</button>
 </form>
@@ -48,6 +48,7 @@ Home
         <th>About</th>
         <th>Date</th>
         <th>Remove</th>
+        <th>Update</th>
       </tr>
     </thead>
     {% for Book in user.Books %}
@@ -61,13 +62,61 @@ Home
         <td>{{ Book.stock }}</td>
         <td>{{ Book.data }}</td>
         <td>{{ Book.date }}</td>
-       
+
         <td>
 
           <form method="post" action="{{ url_for('operations.delete_books', bookID=Book.bookID) }}">
             <input class="btn btn-primary" type="submit" name="delete" value="Delete">
           </form>
-          
+
+        </td>
+        <td>
+
+          <div class="btn-group">
+            <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false">
+              Edit Entry
+            </button>
+            <div class="dropdown-menu p-2">
+
+               <form  method="post" action="{{ url_for('operations.update_books', bookID=Book.bookID) }}">
+                Select Field
+
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault" value = title checked>
+                  <label class="form-check-label" for="flexRadioDefault">
+                    Title
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value = authors >
+                  <label class="form-check-label" for="flexRadioDefault1">
+                    Authors
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value = publisher>
+                  <label class="form-check-label" for="flexRadioDefault1">
+                    Publisher
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value = stock>
+                  <label class="form-check-label" for="flexRadioDefault1">
+                    Stock
+                  </label>
+                </div>
+
+                <div class="form-group">
+                  <label for="title">New Entry</label>
+                  <input type="text" class="form-control" id="new_entry" name="new_entry" placeholder="Enter New Entry" required />
+                </div>
+                <input class="btn btn-primary" type="submit">
+              </form>
+            </div>
+          </div>
+
+
         </td>
 
       </tr>
