@@ -3,8 +3,7 @@
 
 ## **About**
 
-A Library Management Web Application built in fulfilment of the [Developer Hiring Test for Frappe](https://frappe.io/dev-hiring-test).
-(Built with Flask, Jinja, SQLAlchemy)
+A Library Management Web Application built in fulfilment of the [Developer Hiring Test for Frappe](https://frappe.io/dev-hiring-test). This application is Built with Flask, Jinja, SQLAlchemy. It is very easy to use for any User.
 
 ## **Getting Started**
 
