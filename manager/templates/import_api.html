@@ -1,86 +1,77 @@
-{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content %}
-<h1 align="center">
-  Import From FrappeAPI
-</h1>
-
+{% extends "base.html" %} {% block title %}Frappe Api{% endblock %} {% block content %}
+<h1 align="center">Import From FrappeAPI</h1>
 
 <form method="POST">
-
   <div class="form-group">
     <label for="search">Search by</label>
     <select class="form-control" name="search_by" id="search_by" required>
-    
-      <option>
-        <td>title</td>
+
+      <option value="title">
+        <td>Title</td>
       </option>
-  
-      <option>
-        <td>authors</td>
+
+      <option value="authors">
+        <td>Authors</td>
       </option>
-  
-      <option>
-        <td>isbn</td>
+
+      <option value="isbn">
+        <td>ISBN</td>
       </option>
-  
-      <option>
-        <td>publisher</td>
+
+      <option value="publisher">
+        <td>Publisher</td>
       </option>
-  
+
     </select>
-
-
-
-   </div>
-  <div class="form-group">
-    <label for="search">Search</label>
-    <input type="text" class="form-control" id="search" name="search" placeholder="Enter search" required/>
   </div>
 
+  <div class="form-group">
+    <label for="search">Search</label>
+    <input type="text" class="form-control" id="search" name="search" placeholder="Enter search" required />
+  </div>
+
+  <div class="form-group">
+    <label for="stock">Stock</label>
+    <input type="number" class="form-control" id="stock" name="stock" placeholder="Enter the number of Stocks to Add"
+      required />
+  </div>
+
+  <div class="form-group">
+    <label for="data">Data or Notes</label>
+    <input type="text" class="form-control" id="data" name="data"
+      placeholder="Enter any Notes or Data for the Books to be Imported" required />
+  </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
+<br>
 
-<ul id="Passwords">
-  <table class="table table-striped table-bordered">
-    <thead>
-      <tr>
-        <th>bookID</th>
-        <th>title</th>
-        <th>authors</th>
-        <th>isbn</th>
-        <th>publisher</th>
-        <th>stock</th>
-        <th>data</th>
-        <th>date</th>
-      
-
-
-      </tr>
-    </thead>
-    {% for Book in user.Books %}
-    <tbody>
-      <tr>
-        <td>{{ Book.bookID }}</td>
-        <td>{{ Book.title }}</td>
-        <td>{{ Book.authors }}</td>
-        <td>{{ Book.isbn }}</td>
-        <td>{{ Book.publisher }}</td>
-        <td>{{ Book.stock }}</td>
-        <td>{{ Book.data }}</td>
-        <td>{{ Book.date }}</td>
-        <!-- <td><form method="post" action="{{ url_for('operations.delete_books', bookID=Book.bookID) }}">
-          <input class="btn" type="submit" name="delete" value="Delete">
-      </form></td> -->
-
-      </tr>
-    </tbody>
-    {% endfor %}
-  </table>
-
-
-  </li>
-</ul>
-
-
-
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>Imported ID</th>
+      <th>Title</th>
+      <th>Authors</th>
+      <th>ISBN</th>
+      <th>Publisher</th>
+      <th>Stock</th>
+      <th>Data</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  {% for Book in user.Books %}
+  <tbody>
+    <tr>
+      <td>{{ Book.bookID }}</td>
+      <td>{{ Book.title }}</td>
+      <td>{{ Book.authors }}</td>
+      <td>{{ Book.isbn }}</td>
+      <td>{{ Book.publisher }}</td>
+      <td>{{ Book.stock }}</td>
+      <td>{{ Book.data }}</td>
+      <td>{{ Book.date }}</td>
+    </tr>
+  </tbody>
+  {% endfor %}
+</table>
 {% endblock %}

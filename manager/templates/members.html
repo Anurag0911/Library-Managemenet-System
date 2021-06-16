@@ -1,65 +1,107 @@
-{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content %}
+{% extends "base.html" %} {% block title %}Members{% endblock %} {% block content %}
 <h1 align="center">Members</h1>
-
-
-
 <form method="POST">
   <div class="form-group">
     <label for="name">Name</label>
-    <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" required/>
+    <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" required />
   </div>
   <div class="form-group">
     <label for="tel">Phone</label>
-    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter phone" required/>
+    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter phone" required />
   </div>
   <div class="form-group">
     <label for="email">Email Address</label>
-    <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required/>
+    <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required />
   </div>
   <div class="form-group">
     <label for="number">Fine</label>
-    <input type="number" class="form-control" id="fine" name="fine" placeholder="Enter fine" required/>
+    <input type="number" class="form-control" id="fine" name="fine" placeholder="Enter fine" required />
   </div>
-  
+
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
-<ul id="members">
-  <table class="table table-striped table-bordered">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Phone</th>
-        <th>Email</th>
-        <th>Fine</th>
-        <th>Date</th>
-        <th>Remove</th>
 
-      </tr>
-    </thead>
-    {% for member in user.Members %}
-    <tbody>
-      <tr>
-        <td>{{ member.memID }}</td>
-        <td>{{ member.name }}</td>
-        <td>{{ member.phone }}</td>
-        <td>{{ member.email }}</td>
-        <td>{{ member.fine }}</td>
-        <td>{{ member.date }}</td>
-        <td>
-          <form method="post" action="{{ url_for('operations.delete_member', memID=member.memID) }}">
-            <input class="btn" type="submit" name="delete" value="Delete">
-          </form>
-        </td>
+<br>
 
-      </tr>
-    </tbody>
-    {% endfor %}
-  </table>
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Phone</th>
+      <th>Email</th>
+      <th>Fine</th>
+      <th>Date</th>
+      <th>Remove</th>
+      <th>Edit</th>
+
+    </tr>
+  </thead>
+  {% for member in user.Members %}
+  <tbody>
+    <tr>
+      <td>{{ member.memID }}</td>
+      <td>{{ member.name }}</td>
+      <td>{{ member.phone }}</td>
+      <td>{{ member.email }}</td>
+      <td>{{ member.fine }}</td>
+      <td>{{ member.date }}</td>
+      <td>
+        <form method="post" action="{{ url_for('operations.delete_member', memID=member.memID) }}">
+          <input class="btn btn-primary" type="submit" name="delete" value="Delete">
+        </form>
+      </td>
+      <td>
+
+        <div class="btn-group">
+          <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            Edit Entry
+          </button>
+          <div class="dropdown-menu p-2">
+
+             <form  method="post" action="{{ url_for('operations.update_member', memID = member.memID) }}">
+              Select Field
+
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault" value = name checked>
+                <label class="form-check-label" for="flexRadioDefault">
+                  Name
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value = phone >
+                <label class="form-check-label" for="flexRadioDefault1">
+                  Phone
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value = email>
+                <label class="form-check-label" for="flexRadioDefault1">
+                  Email
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value = fine>
+                <label class="form-check-label" for="flexRadioDefault1">
+                  Fine
+                </label>
+              </div>
+
+              <div class="form-group">
+                <label for="title">New Entry</label>
+                <input type="text" class="form-control" id="new_entry" name="new_entry" placeholder="Enter New Entry" required />
+              </div>
+              <input class="btn btn-primary" type="submit">
+            </form>
+          </div>
+        </div>
 
 
-  </li>
-</ul>
+      </td>
 
-
+    </tr>
+  </tbody>
+  {% endfor %}
+</table>
 {% endblock %}

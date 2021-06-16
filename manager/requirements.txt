@@ -1,0 +1,8 @@
+flask
+Flask-SQLAlchemy
+flask-login
+json
+requests
+collections
+pandas
+atplotlib
