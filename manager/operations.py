@@ -7,8 +7,10 @@ from collections import Counter
 from .models import Books, Members, Trans
 from . import db
 
-operations = Blueprint('operations', __name__)
+import pandas as pd
+import matplotlib.pyplot as plt
 
+operations = Blueprint('operations', __name__)
 
 
 
@@ -60,6 +62,33 @@ def report():
             bookfreq[book] = 1
     topmem = Counter(memfreq).most_common(10) 
     topbook = Counter(bookfreq).most_common(10)
+    
+    nam_tra = []
+    num_tra = []
+    for i in range(len(topmem)):
+        print(topmem[i][0].name)
+        nam_tra.append(topmem[i][0].memID)
+        num_tra.append(topmem[i][1])
+    print(topbook)
+    s = pd.Series(num_tra,nam_tra)
+    fig, ax = plt.subplots()
+    s.plot.bar()
+    fig.savefig('manager/static/members')
+
+    nam_bok = []
+    num_bok = []
+    for i in range(len(topbook)):
+        print(topbook[i][0].title)
+        nam_bok.append(topbook[i][0].bookID)
+        num_bok.append(topbook[i][1])
+
+    s = pd.Series(num_bok,nam_bok)
+    fig, ax = plt.subplots()
+    s.plot.bar()
+    fig.savefig('manager/static/books')
+
+
+
     return render_template("report.html", user=current_user,topmem=topmem,topbook=topbook)
 
 # search
