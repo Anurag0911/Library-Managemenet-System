@@ -22,7 +22,7 @@ def home():
         authors = request.form.get('authors')
         isbn = request.form.get('isbn')
         publisher = request.form.get('publisher')
-        num_pages = request.form.get('num_pages')
+        payments = request.form.get('payments')
         stock = request.form.get('stock')
         data = request.form.get('data')
 
@@ -50,10 +50,11 @@ def members():
         phone = request.form.get('phone')
         email = request.form.get('email')
         fine = request.form.get('fine')
+        paid = request.form.get('fine')
 
     
         # Query For the Database
-        new_member = Members(name=name, phone=phone,email=email, fine=fine, user_id=current_user.id)
+        new_member = Members(name=name, phone=phone,email=email, fine=fine,paid=paid, user_id=current_user.id)
         db.session.add(new_member)
         db.session.commit()
 
@@ -77,7 +78,7 @@ def trans():
         mem_name = request.form.get('member_name')
         iss_date = request.form.get('iss_date')
         ret_date = request.form.get('ret_date')
-        rent = request.form.get('rent')
+        paid = request.form.get('rent')
         fine = request.form.get('fine')
 
         # Getting the Members and Books for Debt and StocK verifications respectively
@@ -86,19 +87,21 @@ def trans():
 
         # Numbers to be verified 
         mem_id.fine=str(int(fine) + int(mem_id.fine))
+        mem_id.paid=str(int(paid) + int(mem_id.paid))
         book_id.stock=str(int(book_id.stock)-1)
+        book_id.payments=str(int(paid)+int(book_id.payments))
 
         # The Debt must not be more than 500
         if int(mem_id.fine) > 500:
             flash('Member debt limit exeeded', category='error')
 
         # Making sure Stock is there
-        elif int(book_id.stock) < 0:
+        elif int(book_id.stock) <= 0:
             flash('book not in stock anymore', category='error')
 
         else:
             # Query For the Database
-            new_trans = Trans(transby=book_id, transfor=mem_id, member_name=mem_id.name, book_name=book_id.title, iss_date=iss_date, ret_date=ret_date, rent=rent, fine=fine, user_id=current_user.id)
+            new_trans = Trans(transby=book_id, transfor=mem_id, member_name=mem_id.name, book_name=book_id.title, iss_date=iss_date, ret_date=ret_date, payments=paid, fine=fine, user_id=current_user.id)
             db.session.add(new_trans)
             db.session.commit()
 

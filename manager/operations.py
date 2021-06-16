@@ -37,6 +37,8 @@ def update_books(bookID):
             que.update({Books.publisher: new_entry})
         elif Column == "authors":
             que.update({Books.authors: new_entry})
+        elif Column == "payment":
+            que.update({Books.payments: new_entry})
         else:
             flash("Some error occured")
 
@@ -65,6 +67,8 @@ def update_member(memID):
             que.update({Members.email: new_entry})
         elif Column == "fine":
             que.update({Members.fine: new_entry})
+        elif Column == "paid":
+            que.update({Members.paid: new_entry})
         else:
             flash("Some error occured")
 
@@ -187,7 +191,7 @@ def import_api():
                 
             # if Books is Not present Adding them to the Database
             else:
-                new_Book = Books(bookID=bokID, title=tile, authors=authors, isbn=isbn, publisher=publisher, stock=stock, data=data, user_id=current_user.id)
+                new_Book = Books(bookID=bokID, title=tile, authors=authors, isbn=isbn, publisher=publisher, stock=stock, data=data,payments = 0, user_id=current_user.id)
                 db.session.add(new_Book)
                 db.session.commit()
         
