@@ -17,7 +17,7 @@ A Library Management Web Application built in fulfilment of the [Developer Hirin
    ```
 3. Run app
    ```sh
-   python app.py
+   python main.py
    ```
 
 ## **Screenshots:**
