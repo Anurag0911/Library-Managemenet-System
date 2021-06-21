@@ -29,8 +29,8 @@ Go to `http://127.0.0.1:5000`
 
 ## **Screenshots:**
 
+![screencapture-127-0-0-1-5000-2021-06-21-08_27_43](https://user-images.githubusercontent.com/67339426/122701380-c21d5280-d26a-11eb-9e3b-852593770ad3.png)
 
-Make An Account for demo or Please access the library using the following credentials for login to use the same db as Screebshots
 ![screencapture-127-0-0-1-5000-2021-06-21-07_59_34](https://user-images.githubusercontent.com/67339426/122699550-3b1aab00-d267-11eb-8a47-924c71fdaefb.png)
 ![screencapture-127-0-0-1-5000-books-2021-06-21-08_00_05](https://user-images.githubusercontent.com/67339426/122699562-3e159b80-d267-11eb-8ed9-320c08ad7848.png)
 ![screencapture-127-0-0-1-5000-ajax-approach-2021-06-21-08_00_13](https://user-images.githubusercontent.com/67339426/122699558-3ce46e80-d267-11eb-9932-abee489fc1a0.png)
