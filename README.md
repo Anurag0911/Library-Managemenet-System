@@ -3,8 +3,7 @@
 
 ## **About**
 
-A Library Management Web Application built in fulfilment of the [Developer Hiring Test for Frappe](https://frappe.io/dev-hiring-test). Allows a librarian to track books and their quantity, members, and transactions.
-(Built with Flask, Jinja, SQLAlchemy)
+A Library Management Web Application built in fulfilment of the [Developer Hiring Test for Frappe](https://frappe.io/dev-hiring-test). This application is Built with Flask, Jinja, SQLAlchemy.
 ## Setup & Installtion
 
 Make sure you have the latest version of Python installed.
