@@ -31,26 +31,20 @@ Go to `http://127.0.0.1:5000`
 
 
 Make An Account for demo or Please access the library using the following credentials for login to use the same db as Screebshots
+![screencapture-127-0-0-1-5000-transactions-2021-06-21-08_00_39](https://user-images.githubusercontent.com/67339426/122699542-38b85100-d267-11eb-8a4a-482b7874d0ab.png)
+![screencapture-127-0-0-1-5000-2021-06-21-07_59_34](https://user-images.githubusercontent.com/67339426/122699550-3b1aab00-d267-11eb-8a47-924c71fdaefb.png)
+![screencapture-127-0-0-1-5000-add-books-2021-06-21-07_59_41](https://user-images.githubusercontent.com/67339426/122699553-3bb34180-d267-11eb-88bc-28e1e1e53061.png)
 
-email = anurag@gmail.com
+![screencapture-127-0-0-1-5000-login-2021-06-21-08_01_35](https://user-images.githubusercontent.com/67339426/122699571-4372e600-d267-11eb-8007-9e7d9e91f32a.png)
+![screencapture-127-0-0-1-5000-add-members-2021-06-21-07_59_48](https://user-images.githubusercontent.com/67339426/122699554-3bb34180-d267-11eb-86c4-c81ceb0a59fd.png)
+![screencapture-127-0-0-1-5000-add-transactions-2021-06-21-07_59_59](https://user-images.githubusercontent.com/67339426/122699556-3c4bd800-d267-11eb-82db-9c46c8ac3653.png)
+![screencapture-127-0-0-1-5000-ajax-approach-2021-06-21-08_00_13](https://user-images.githubusercontent.com/67339426/122699558-3ce
+![screencapture-127-0-0-1-5000-members-2021-06-21-08_00_31](https://user-images.githubusercontent.com/67339426/122699574-44a41300-d267-11eb-931a-4d331437bc8b.png)
+![screencapture-127-0-0-1-5000-report-2021-06-21-08_01_25](https://user-images.githubusercontent.com/67339426/122699577-453ca980-d267-11eb-9689-296ab22429ab.png)
+![screencapture-127-0-0-1-5000-search-2021-06-21-08_01_03](https://user-images.githubusercontent.com/67339426/122699579-466dd680-d267-11eb-950d-5094f6a4c38d.png)
+![screencapture-127-0-0-1-5000-search-2021-06-21-08_01_17](https://user-images.githubusercontent.com/67339426/122699581-47066d00-d267-11eb-9ed0-f90c2d0d9a84.png)
+46e80-d267-11eb-9932-abee489fc1a0.png)
+![screencapture-127-0-0-1-5000-ajax-approach-2021-06-21-08_00_23](https://user-images.githubusercontent.com/67339426/122699560-3d7d0500-d267-11eb-8268-cf186bb1c454.png)
+![screencapture-127-0-0-1-5000-books-2021-06-21-08_00_05](https://user-images.githubusercontent.com/67339426/122699562-3e159b80-d267-11eb-8ed9-320c08ad7848.png)
+![screencapture-127-0-0-1-5000-import-api-2021-06-21-08_00_54](https://user-images.githubusercontent.com/67339426/122699563-3fdf5f00-d267-11eb-84b3-3db632f0c3e3.png)
 
-password = 1234567890
-
-To login for a demo
-
-![img (1)](https://user-images.githubusercontent.com/67339426/122246432-2b583b00-cee4-11eb-9a32-72f91b83feb8.png)
-![img (2)](https://user-images.githubusercontent.com/67339426/122246443-2d21fe80-cee4-11eb-9259-644f208d8786.png)
-![img (3)](https://user-images.githubusercontent.com/67339426/122246446-2dba9500-cee4-11eb-967d-c3df0e243b68.png)
-![img (4)](https://user-images.githubusercontent.com/67339426/122246453-2e532b80-cee4-11eb-81bd-60a657e783bd.png)
-![img (5)](https://user-images.githubusercontent.com/67339426/122246456-2eebc200-cee4-11eb-96b8-41ac0f42473b.png)
-![img (6)](https://user-images.githubusercontent.com/67339426/122246457-2eebc200-cee4-11eb-9743-90afb8d4b1f0.png)
-![img (7)](https://user-images.githubusercontent.com/67339426/122246458-2f845880-cee4-11eb-955c-5e37f8d9248e.png)
-![img (8)](https://user-images.githubusercontent.com/67339426/122246460-2f845880-cee4-11eb-9c4d-9cf4bb1f3d9e.png)
-![img (9)](https://user-images.githubusercontent.com/67339426/122246464-301cef00-cee4-11eb-9642-d1e3f6eb32e6.png)
-![img (10)](https://user-images.githubusercontent.com/67339426/122246467-30b58580-cee4-11eb-86e7-483c92424c3a.png)
-![img (11)](https://user-images.githubusercontent.com/67339426/122246468-30b58580-cee4-11eb-833d-92cd417d546f.png)
-![image (1)](https://user-images.githubusercontent.com/67339426/122247964-5f802b80-cee5-11eb-87e9-398a83f39ec2.png)
-![image (2)](https://user-images.githubusercontent.com/67339426/122247971-60b15880-cee5-11eb-8183-8387bf636048.png)
-![image (3)](https://user-images.githubusercontent.com/67339426/122247973-60b15880-cee5-11eb-84b7-032a7ab031d5.png)
-![image (4)](https://user-images.githubusercontent.com/67339426/122247975-6149ef00-cee5-11eb-8bbe-55a4ef3e4434.png)
-![image (5)](https://user-images.githubusercontent.com/67339426/122247982-61e28580-cee5-11eb-8fe0-c91795300306.png)
