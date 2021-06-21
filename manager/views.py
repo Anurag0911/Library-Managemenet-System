@@ -6,7 +6,6 @@ from sqlalchemy.sql import func
 # Importing Models and Databse Settings (SQLAlchemy)
 from .models import Books, Members, Transactions
 from . import db
-# from manager import create_app.app
 
 # Adding to Routes
 views = Blueprint('views', __name__)
