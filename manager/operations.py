@@ -16,16 +16,15 @@ import matplotlib.pyplot as plt
 operations = Blueprint('operations', __name__)
 
 
+
+# Funtions for the Editing of the Books And Members
 # Transactions
 @operations.route('/add_transactions', methods=['GET', 'POST'])
 @login_required
 def add_transactions():
     """Function for adding transactions/Issuing Books
-    Parameters
+    Variables
     ----------
-    Handles :
-        request for addtion of transactions
-    
     fine:
         adds the fine to previous Value
         checks if fine is more than 500
@@ -66,17 +65,13 @@ def add_transactions():
             flash('Transaction Added!', category='success')
     return render_template("add_transactions.html", user=current_user)
 
-
 # Members
 @operations.route('/add_members', methods=['GET', 'POST'])
 @login_required
 def add_members():
     """Function for adding transactions/ Issuing Books
-    Parameters
-    ----------
-    Handles :
-        request for addtion of transactions
-    
+    Variables
+    ----------    
     fine:
         adds the fine to previous Value
         checks if fine is more than 500
@@ -87,7 +82,7 @@ def add_members():
 
     Returns
     -------
-    Transactions template
+    Members template
     """
     if request.method == 'POST':
         name = request.form.get('name')
@@ -109,6 +104,17 @@ def add_members():
 @operations.route('/add_books', methods=['GET', 'POST'])
 @login_required
 def books():
+    """Function for adding Books
+    Variables
+    ----------    
+    payments:
+        default : 0
+    
+    
+    Returns
+    -------
+    Books template
+    """
     if request.method == 'POST':
         title = request.form.get('title')
         authors = request.form.get('authors')
@@ -134,6 +140,18 @@ def books():
 @operations.route('/update_books<string:bookID>', methods=['GET', 'POST'])
 @login_required
 def update_books(bookID):
+    """Function for editing Books
+    Parameters
+    ----------
+    bookID :
+        Id of the Book to be updated    
+    
+    Returns
+    -------
+    Updated Book Query
+    Books template
+    """
+
     if request.method == 'POST':
         new_entry = request.form.get('new_entry')
         Column = request.form.get('flexRadioDefault')
@@ -153,11 +171,21 @@ def update_books(bookID):
         db.session.commit()
         flash('Book updated')
         return redirect(url_for("views.books"))
-
-# Update
+# Members
 @operations.route('/update_member<string:memID>', methods=['GET', 'POST'])
 @login_required
 def update_member(memID):
+    """Function for editing Books
+    Parameters
+    ----------
+    memID :
+        Id of the Member to be updated    
+    
+    Returns
+    -------
+    Updated Member Query
+    Member template
+    """
     if request.method == 'POST':
         new_entry = request.form.get('new_entry')
         Column = request.form.get('flexRadioDefault')
@@ -185,6 +213,16 @@ def update_member(memID):
 @operations.route('/report', methods=['GET', 'POST'])
 @login_required
 def report():
+    """Function for adding Books
+    Parameters
+    ----------
+    None   
+    
+    Returns
+    -------
+    Top 10 members and Books
+    plt for top 10 Members and Books
+    """
     transactions = Transactions.query.all()
     memfreq = {}
     bookfreq = {}
@@ -232,10 +270,20 @@ def report():
     return render_template("report.html", user=current_user, topmem=topmem, topbook=topbook)
 
 
-# Search
 @operations.route('/search', methods=['GET', 'POST'])
 @login_required
 def search():
+    """Function for adding Books
+    Parameters
+    ----------
+    Search:
+        Term to search by   
+    
+    Returns
+    -------
+    Filtered Data for the search tearm
+    renders : search.html
+    """
     books = Books.query.all()
     transactions = Transactions.query.all()
     members = Members.query.all()
@@ -251,10 +299,22 @@ def search():
     return render_template("search.html", user=current_user, books=books, transactions=transactions, members=members)
 
 
-# For Interacting with the API
 @operations.route('/import_api', methods=['GET', 'POST'])
 @login_required
 def import_api():
+    """Function for adding Books
+    Parameters
+    ----------
+    search:
+        term to search the Api with
+    search_by:
+        the category to search i.e. Title   
+    
+    Returns
+    -------
+    Query to update the Database
+    Renders: import_api.html
+    """
     if request.method == 'POST':
         search_by = request.form.get('search_by')
         search = request.form.get('search')
@@ -275,8 +335,7 @@ def import_api():
             if (Books.query.filter_by(bookID=bokID).first() and Books.query.filter_by(title=tile).first()):
                 print("Book is there")
             else:
-                new_Book = Books(bookID=bokID, title=tile, authors=authors, isbn=isbn,
-                                 publisher=publisher, stock=stock, data=data, payments=0, user_id=current_user.id)
+                new_Book = Books(bookID=bokID, title=tile, authors=authors, isbn=isbn,publisher=publisher, stock=stock, data=data, payments=0, user_id=current_user.id)
                 db.session.add(new_Book)
                 db.session.commit()
 
@@ -289,6 +348,17 @@ def import_api():
 # Transactions
 @operations.route('/transactions/delete/<string:transID>', methods=['POST'])
 def delete_transactions(transID):
+    """Function for adding Books
+    Parameters
+    ----------
+    TransID:
+        Tracnsaction Id for the Deletion 
+    
+    Returns
+    -------
+    Query to update the Database
+    Renders: transactions.html
+    """
     tran = Transactions.query.get_or_404(transID)
     db.session.delete(tran)
     db.session.commit()
@@ -298,6 +368,17 @@ def delete_transactions(transID):
 # Books
 @operations.route('/delete/<string:bookID>', methods=['POST'])
 def delete_books(bookID):
+    """Function for adding Books
+    Parameters
+    ----------
+    bookID:
+        Book Id for the Deletion 
+    
+    Returns
+    -------
+    Query to update the Database
+    Renders: books.html
+    """
     Book = Books.query.get_or_404(bookID)
     db.session.delete(Book)
     db.session.commit()
@@ -307,6 +388,17 @@ def delete_books(bookID):
 # Members
 @operations.route('/members/delete/<string:memID>', methods=['POST'])
 def delete_member(memID):
+    """Function for adding Books
+    Parameters
+    ----------
+    memID:
+        Member Id for the Deletion 
+    
+    Returns
+    -------
+    Query to update the Database
+    Renders: members.html
+    """
     Member = Members.query.get_or_404(memID)
     db.session.delete(Member)
     db.session.commit()
