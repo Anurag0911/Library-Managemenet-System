@@ -1,0 +1,62 @@
+{% extends "base.html" %} {% block title %}Transactions{% endblock %} {% block content %}
+<h1 align="center">Transactions</h1>
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="books" width="100%">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Book Name</th>
+                        <th>Member Name</th>
+                        <th>Issue Date</th>
+                        <th>Return Date</th>
+                        <th>Payments Made</th>
+                        <th>Fine/Debts</th>
+                        <th>Remove</th>
+
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>ID</th>
+                        <th>Book Name</th>
+                        <th>Member Name</th>
+                        <th>Issue Date</th>
+                        <th>Return Date</th>
+                        <th>Payments Made</th>
+                        <th>Fine/Debts</th>
+                        <th>Remove</th>
+
+                    </tr>
+                </tfoot>
+
+                {% for tran in user.Transactions %}
+                <tbody>
+                    <tr>
+                        <td>{{ tran.transID }}</td>
+                        <td>{{ tran.book_name }}</td>
+                        <td>{{ tran.member_name }}</td>
+                        <td>{{ tran.iss_date }}</td>
+                        <td>{{ tran.ret_date }}</td>
+                        <td>{{ tran.payments }}</td>
+                        <td>{{ tran.fine }}</td>
+                        <td>
+                            <form method="post" action="{{ url_for('operations.delete_transactions', transID=tran.transID) }}" )>
+                                <input class="btn btn-primary" type="submit" name="delete" value="Delete">
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

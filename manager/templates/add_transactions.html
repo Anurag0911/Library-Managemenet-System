@@ -1,0 +1,45 @@
+{% extends "base.html" %} {% block title %}Transactions{% endblock %} {% block content %}
+<h1>Add Transactions</h1>
+<hr>
+<form method="POST">
+  <div class="form-group">
+    <label for="book_name">Book Name</label>
+    <select class="form-control" name="book_name" id="book_name" placeholder="Enter book_name">
+      {% for Book in user.Books %}
+      <option value={{ Book.bookID }}>
+        <td>{{ Book.title }}</td>
+      </option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="book_name">Member Name</label>
+    <select class="form-control" name="member_name" id="member_name">
+      {% for member in user.Members %}
+      <option value={{ member.memID }}>
+        <td>
+          {{ member.name }}
+        </td>
+      </option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="iss_date">Issue Date</label>
+    <input type="date" class="form-control" id="iss_date" name="iss_date" placeholder="Enter iss_date" required />
+  </div>
+  <div class="form-group">
+    <label for="ret_date">Return date</label>
+    <input type="date" class="form-control" id="ret_date" name="ret_date" placeholder="Enter ret_date" required />
+  </div>
+  <div class="form-group">
+    <label for="rent">Rent</label>
+    <input type="number" class="form-control" id="rent" name="rent" placeholder="Enter rent" required />
+  </div>
+  <div class="form-group">
+    <label for="fine">Fine</label>
+    <input type="number" class="form-control" id="fine" name="fine" placeholder="Enter fine" required />
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% endblock %}

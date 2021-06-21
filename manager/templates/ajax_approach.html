@@ -1,0 +1,65 @@
+{% extends "base.html" %}{% block title %}Books{% endblock %}{% block content %}
+
+<!-- Page Heading -->
+
+<h1>Ajax Approach</h1>
+
+<hr>
+<br>
+
+
+
+
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Ajax Books DataTable</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table id='BookTable' class='display dataTable' width='100%'>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Authors</th>
+                        <th>Publisher</th>
+                        <th>Stock</th>
+                        <th>About</th>
+                    </tr>
+                </thead>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+
+{% block javascript %}
+
+<script>
+    $(document).ready(function () {
+        var bookDataTable = $('#BookTable').DataTable({
+            'processing': true,
+            'serverSide': true,
+            'serverMethod': 'post',
+            'ajax': {
+                'url': '/ajaxfile'
+            },
+            'lengthMenu': [[5, 10, 20, -1], [5, 10, 20, "All"]],
+            searching: true,
+            sort: false,
+            "serverSide": true,
+            'columns': [
+                { data: 'title' },
+                { data: 'authors' },
+                { data: 'publisher' },
+                { data: 'stock' },
+                { data: 'data' },
+            ]
+        });
+
+    });
+
+</script>
+{% endblock %}
+{% endblock %}

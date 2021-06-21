@@ -1,4 +1,3 @@
-# This File will Create a python package
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from os import path
@@ -6,10 +5,9 @@ from flask_login import LoginManager
 
 db = SQLAlchemy()
 DB_NAME = "database.db"
-
+app = Flask(__name__)
 
 def create_app():
-    app = Flask(__name__)
     app.config['SECRET_KEY'] = 'secretkey'
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
     db.init_app(app)
@@ -17,12 +15,14 @@ def create_app():
     from .views import views
     from .operations import operations
     from .auth import auth
+    from . import error_handlers
+    
 
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(operations, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
 
-    from .models import User, Books, Trans, Members
+    from .models import User, Books, Transactions, Members
 
     create_database(app)
 

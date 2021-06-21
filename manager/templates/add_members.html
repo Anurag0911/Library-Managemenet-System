@@ -1,0 +1,29 @@
+{% extends "base.html" %} {% block title %}Members{% endblock %} {% block content %}
+<h1>Add Members</h1>
+<hr>
+<form method="POST">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" class="form-control" id="name" name="name" placeholder="Enter Name" required />
+  </div>
+  <div class="form-group">
+    <label for="tel">Phone</label>
+    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter phone" required />
+  </div>
+  <div class="form-group">
+    <label for="email">Email Address</label>
+    <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required />
+  </div>
+  <div class="form-group">
+    <label for="number">Fine</label>
+    <input type="number" class="form-control" id="fine" name="fine" placeholder="Enter fine" required />
+  </div>
+  <div class="form-group">
+    <label for="number">Paid</label>
+    <input type="number" class="form-control" id="paid" name="paid" placeholder="Enter any paid amount by member" required />
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<br>
+{% endblock %}

@@ -1,0 +1,128 @@
+{% extends "base.html" %}{% block title %}Books{% endblock %}{% block content %}
+<!-- Page Heading -->
+<h1>Books</h1>
+
+<hr>
+<br>
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Books DataTable</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="books_datatable" width="100%">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Authors</th>
+                        <th>Isbn</th>
+                        <th>Publisher</th>
+                        <th>Stock</th>
+                        <th>Payments</th>
+                        <th>About</th>
+                        <th>Remove</th>
+                        <th>Update</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Authors</th>
+                        <th>Isbn</th>
+                        <th>Publisher</th>
+                        <th>Stock</th>
+                        <th>Payments</th>
+                        <th>About</th>
+                        <th>Remove</th>
+                        <th>Update</th>
+                    </tr>
+                </tfoot>
+                {% for Book in books %}
+                <tbody>
+                    <tr>
+                        <td>{{ Book.bookID }}</td>
+                        <td>{{ Book.title }}</td>
+                        <td>{{ Book.authors }}</td>
+                        <td>{{ Book.isbn }}</td>
+                        <td>{{ Book.publisher }}</td>
+                        <td>{{ Book.stock }}</td>
+                        <td>{{ Book.payments }}</td>
+                        <td>{{ Book.data }}</td>
+                        <td>
+                            <form method="post" action="{{ url_for('operations.delete_books', bookID=Book.bookID) }}">
+                                <input class="btn btn-primary" type="submit" name="delete" value="Delete">
+                            </form>
+                        </td>
+
+
+
+                        <td>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Edit
+                                          </button>
+                                <div class="dropdown-menu p-2">
+
+                                    <form method="post" action="{{ url_for('operations.update_books', bookID=Book.bookID) }}">
+                                        Select Field
+
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault" value=title checked>
+                                            <label class="form-check-label" for="flexRadioDefault">
+                                                  Title
+                                                </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value=authors>
+                                            <label class="form-check-label" for="flexRadioDefault1">
+                                                  Authors
+                                                </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value=publisher>
+                                            <label class="form-check-label" for="flexRadioDefault1">
+                                                  Publisher
+                                                </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value=stock>
+                                            <label class="form-check-label" for="flexRadioDefault1">
+                                                  Stock
+                                                </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value=payment>
+                                            <label class="form-check-label" for="flexRadioDefault1">
+                                                  Payments
+                                                </label>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="title">New Entry</label>
+                                            <input type="text" class="form-control" id="new_entry" name="new_entry" placeholder="Enter New Entry" required />
+                                        </div>
+                                        <input class="btn btn-primary" type="submit">
+                                    </form>
+                                </div>
+                            </div>
+
+
+                        </td>
+
+                    </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}

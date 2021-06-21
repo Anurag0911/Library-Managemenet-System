@@ -11,11 +11,11 @@ class Members(db.Model):
     name = db.Column(db.String(150))
     phone = db.Column(db.String(150))
     email = db.Column(db.String(150))
-    paid = db.Column(db.String(150))
-    fine = db.Column(db.String(150))
+    paid = db.Column(db.Integer)
+    fine = db.Column(db.Integer)
     date = db.Column(db.DateTime(timezone=True), default=func.now())
     user_id = db.Column(db.Integer, db.ForeignKey(user))
-    trans = db.relationship('Trans', backref='transfor')
+    trans = db.relationship('Transactions', backref='transfor')
 
 
 class Books(db.Model):
@@ -25,16 +25,16 @@ class Books(db.Model):
     authors = db.Column(db.String(150))
     isbn = db.Column(db.String(150))
     publisher = db.Column(db.String(150))
-    payments = db.Column(db.String(150))
-    stock = db.Column(db.String(150))
+    payments = db.Column(db.Integer)
+    stock = db.Column(db.Integer)
     data = db.Column(db.String(10000))
     date = db.Column(db.DateTime(timezone=True), default=func.now())
     user_id = db.Column(db.Integer, db.ForeignKey(user))
-    trans = db.relationship('Trans', backref='transby')
+    trans = db.relationship('Transactions', backref='transby')
 
 
-class Trans(db.Model):
-    """This class defines the table for information of Transcas"""
+class Transactions(db.Model):
+    """This class defines the table for information of Transactions"""
     transID = db.Column(db.Integer, primary_key=True)
     book_id = db.Column(db.Integer, db.ForeignKey('books.bookID'))
     mem_id = db.Column(db.Integer, db.ForeignKey('members.memID'))
@@ -42,8 +42,8 @@ class Trans(db.Model):
     book_name = db.Column(db.String(150))
     iss_date = db.Column(db.String(150))
     ret_date = db.Column(db.String(150))
-    payments = db.Column(db.String(150))
-    fine = db.Column(db.String(150))
+    payments = db.Column(db.Integer)
+    fine = db.Column(db.Integer)
     date = db.Column(db.DateTime(timezone=True), default=func.now())
     user_id = db.Column(db.Integer, db.ForeignKey(user))
 
@@ -56,4 +56,4 @@ class User(db.Model, UserMixin):
     first_name = db.Column(db.String(150))
     Books = db.relationship('Books')
     Members = db.relationship('Members')
-    Trans = db.relationship('Trans')
+    Transactions = db.relationship('Transactions')

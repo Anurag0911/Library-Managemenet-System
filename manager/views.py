@@ -1,112 +1,98 @@
 from flask import Blueprint, render_template, request, flash, jsonify
 from flask_login import login_required, current_user
 import json
+from sqlalchemy.sql import func
 
 # Importing Models and Databse Settings (SQLAlchemy)
-from .models import Books, Members, Trans
+from .models import Books, Members, Transactions
 from . import db
+# from manager import create_app.app
 
 # Adding to Routes
 views = Blueprint('views', __name__)
 
-# Books
-@views.route('/', methods=['GET', 'POST'])
-@login_required
 
-# Funtion for the Home page Showing a List of all the booKs
-def home():
+@views.route('/ajax_approach')
+def ajax_approach():
+    return render_template('ajax_approach.html',user=current_user)
 
-    # Handling the Post request for the Addition of books to the Database
-    if request.method == 'POST':
-        title = request.form.get('title')
-        authors = request.form.get('authors')
-        isbn = request.form.get('isbn')
-        publisher = request.form.get('publisher')
-        payments = request.form.get('payments')
-        stock = request.form.get('stock')
-        data = request.form.get('data')
-
-        # Query For the Database
-        new_Book = Books(title=title, authors=authors, isbn=isbn, publisher=publisher, num_pages=num_pages, stock=stock, data=data, user_id=current_user.id)
-        db.session.add(new_Book)
+@views.route("/ajaxfile",methods=["POST","GET"])
+def ajaxfile():
+    try:
+        if request.method == 'POST':
+            draw = request.form['draw'] 
+            row = int(request.form['start'])
+            rowperpage = int(request.form['length'])
+            searchValue = request.form["search[value]"]
+            totalRecords = db.session.query(func.count(Books.bookID)).scalar()
+            totalRecordwithFilter = len(Books.query.filter(Books.title.like("%" + searchValue +"%")).all())
+            if searchValue=='':
+                books = Books.query.all()[row:rowperpage+row]
+            else:
+                books = Books.query.filter(Books.title.like("%" + searchValue +"%")).all()[row:rowperpage+row] 
+            data = []
+            for row in books:
+                data.append({
+                    'title': row.title,
+                    'authors': row.authors,
+                    'publisher': row.publisher,
+                    'stock': row.stock,
+                    'data': row.data,
+                })
+            response = {
+                'draw': draw,
+                'iTotalRecords': totalRecords,
+                'iTotalDisplayRecords': totalRecordwithFilter,
+                'aaData': data,
+            }
+            return jsonify(response)
+    except Exception as e:
+        print(e)
+    finally:
         db.session.commit()
 
-        # Success message
-        flash('Book Added!', category='success')
-    
-    # Returning a User ID to access Books.
-    return render_template("home.html", user=current_user)
+
+
+# Dashboard
+@views.route('/', methods=['GET'])
+@login_required
+def index():
+    total_payment = db.session.query(func.sum(Transactions.payments).label("total_payment"))
+    top_members = db.session.query(Members).order_by(Members.paid.desc())
+    top_books = db.session.query(Books).order_by(Books.payments.desc())
+    top_titles=[]
+    top_payments=[]
+    for i in top_books:
+        top_titles.append(i.title)
+        top_payments.append(i.payments)
+    top_names=[]
+    top_paids=[]
+    for i in top_members:    
+        top_names.append(i.name)
+        top_paids.append(i.paid)
+    return render_template("index.html",top_titles=json.dumps(top_titles),top_names=json.dumps(top_names),top_paids=json.dumps(top_paids),top_payments=json.dumps(top_payments), user=current_user, total_payment=total_payment,top_members=top_members,top_books=top_books)
+
+
+
+
+# Books
+@views.route('/books', methods=['GET'])
+@login_required
+def books():
+    all_books = db.session.query(Books).order_by(Books.date.desc()).all()
+    return render_template("books.html",user=current_user, books = all_books)
+
 
 # Members
-@views.route('/members', methods=['GET', 'POST'])
+@views.route('/members', methods=['GET'])
 @login_required
-
-# Funtion for the Addition of members 
 def members():
-
-    # handling the POST request from the member form
-    if request.method == 'POST':
-        name = request.form.get('name')
-        phone = request.form.get('phone')
-        email = request.form.get('email')
-        fine = request.form.get('fine')
-        paid = request.form.get('fine')
-
-    
-        # Query For the Database
-        new_member = Members(name=name, phone=phone,email=email, fine=fine,paid=paid, user_id=current_user.id)
-        db.session.add(new_member)
-        db.session.commit()
-
-        # Success message
-        flash('Member Added!', category='success')
-
-    
-    # Returning a User ID to access Books.
     return render_template("members.html", user=current_user)
 
-# Transactions 
-@views.route('/trans', methods=['GET', 'POST'])
+
+# Tranctions
+@views.route('/transactions', methods=['GET'])
 @login_required
+def transactions():
+    return render_template("transactions.html", user=current_user)
 
-# Funtion for the Addition of members 
-def trans():
-
-    # Handling the POST request
-    if request.method == 'POST':
-        book_name = request.form.get('book_name')
-        mem_name = request.form.get('member_name')
-        iss_date = request.form.get('iss_date')
-        ret_date = request.form.get('ret_date')
-        paid = request.form.get('rent')
-        fine = request.form.get('fine')
-
-        # Getting the Members and Books for Debt and StocK verifications respectively
-        mem_id = Members.query.filter_by(memID=mem_name).first()
-        book_id = Books.query.filter_by(bookID=book_name).first()
-
-        # Numbers to be verified 
-        mem_id.fine=str(int(fine) + int(mem_id.fine))
-        mem_id.paid=str(int(paid) + int(mem_id.paid))
-        book_id.stock=str(int(book_id.stock)-1)
-        book_id.payments=str(int(paid)+int(book_id.payments))
-
-        # The Debt must not be more than 500
-        if int(mem_id.fine) > 500:
-            flash('Member debt limit exeeded', category='error')
-
-        # Making sure Stock is there
-        elif int(book_id.stock) <= 0:
-            flash('book not in stock anymore', category='error')
-
-        else:
-            # Query For the Database
-            new_trans = Trans(transby=book_id, transfor=mem_id, member_name=mem_id.name, book_name=book_id.title, iss_date=iss_date, ret_date=ret_date, payments=paid, fine=fine, user_id=current_user.id)
-            db.session.add(new_trans)
-            db.session.commit()
-
-            # Success message
-            flash('Transaction Added!', category='success')
-
-    # Returning a User ID to access Books.
-    return render_template("trans.html", user=current_user)

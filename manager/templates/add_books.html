@@ -1,0 +1,32 @@
+{% extends "base.html" %}{% block title %}Home{% endblock %}{% block content %}
+<!-- Page Heading -->
+<h1>Add Book</h1>
+<hr>
+<form method="POST" class="form-group ">
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input type="text" class="form-control" id="title" name="title" placeholder="Enter Title" required />
+  </div>
+  <div class="form-group">
+    <label for="authors">Authors</label>
+    <input type="text" class="form-control" id="authors" name="authors" placeholder="Enter Authors" required />
+  </div>
+  <div class="form-group">
+    <label for="isbn">Isbn</label>
+    <input type="number" class="form-control" id="isbn" name="isbn" placeholder="Enter Isbn" required />
+  </div>
+  <div class="form-group">
+    <label for="publisher">Publisher</label>
+    <input type="text" class="form-control" id="publisher" name="publisher" placeholder="Enter Publisher" required />
+  </div>
+  <div class="form-group">
+    <label for="stock">Stock</label>
+    <input type="number" class="form-control" id="stock" name="stock" placeholder="Enter Stock" required />
+  </div>
+  <div class="form-group">
+    <label for="data">Data</label>
+    <input type="text" class="form-control" id="data" name="data" placeholder="Enter Data" required />
+  </div>
+  <button type="ADD" class="btn btn-primary">ADD</button>
+</form>
+{% endblock %}

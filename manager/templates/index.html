@@ -1,0 +1,246 @@
+{% extends "base.html" %}{% block title %}Home{% endblock %}{% block content %}
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1>Dashboard</h1>
+    </div>
+    <hr>
+
+    <!-- Content Row -->
+    <div class="row">
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                Earnings (total)</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">${{ total_payment.all()[0][0] }}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Content Row -->
+
+    <div class="row">
+
+        <!-- Area Chart -->
+        <div class="col-xl-6 col-lg-7">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Top 10 Books</h6>
+                </div>
+
+                <!-- Card Body -->
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="books">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>title</th>
+                                    <th>Paid</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>title</th>
+                                    <th>Paid</th>
+                                </tr>
+                            </tfoot>
+                            {% for book in top_books[0:10] %}
+                            <tbody>
+                                <tr>
+                                    <td>{{ book.bookID }}</td>
+                                    <td>{{ book.title[0:40] }}...</td>
+                                    <td>{{ book.payments }}</td>
+                                </tr>
+                            </tbody>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="col-xl- col-lg-5">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Donut Chart</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <div class="chart-pie pt-4">
+
+                        <canvas id="Top_Books" width="100%" height="100%"></canvas>
+                    </div>
+                    <br><br><br><br>
+                    <br><br><br><br>
+                    <hr> Styling for the donut chart can be found in the
+                </div>
+            </div>
+        </div>
+        <!-- Content Row -->
+
+
+        <!-- Area Chart -->
+        <div class="col-xl-6 col-lg-7">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Top 10 Members</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="books">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Paid</th>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Paid</th>
+                                </tr>
+                            </tfoot>
+                            {% for member in top_members[0:10] %}
+                            <tbody>
+                                <tr>
+                                    <td>{{ member.memID }}</td>
+                                    <td>{{ member.name }}</td>
+                                    <td>{{ member.paid }}</td>
+                                </tr>
+                            </tbody>
+                            {% endfor %}
+                        </table>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="col-xl- col-lg-5">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Donut Chart</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <div class="chart-pie pt-4">
+
+                        <canvas id="Top_members" width="100%" height="100%"></canvas>
+                    </div>
+                    <br><br><br><br>
+                    <br><br><br><br>
+                    <hr> Styling for the donut chart can be found in the
+                </div>
+            </div>
+        </div>
+    </div>
+    {% block javascript %}
+    <script>
+        let top_titles_data = JSON.parse({{ top_titles | tojson }})
+        let top_payments_data = JSON.parse({{ top_payments | tojson }})
+        let Top_books_Chart = new Chart(Top_Books, {
+            type: 'pie',
+            data: {
+                labels: top_titles_data,
+                datasets: [{
+                    label: "Books VS payemnts",
+                    data: top_payments_data,
+                    backgroundColor: ['#5DA5DA ', '#FAA43A', '#60BD68',
+                        '#B276B2', '#E16851', '#FB8267'],
+
+                    borderWidth: 1,
+                    hoverBorderColor: "black",
+                    hoverBorderWidth: 2,
+                    hoverBackgroundColor: 'rgba(154, 245, 140)',
+                    pointHoverRadius: 5
+                }],
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: "Income Vs Expenses",
+                    fontSize: 20,
+                },
+                legend: {
+                    position: "right",
+                    labels: {
+                        fontColor: "gray"
+                    },
+                    display: true,
+                },
+
+                elements: {
+                    hitRadius: 3,
+                }
+            }
+        });
+
+        let top_names_data = JSON.parse({{ top_names | tojson }})
+        let top_paids_data = JSON.parse({{ top_paids | tojson }})
+        let Top_members_Chart = new Chart(Top_members, {
+            type: 'pie',
+            data: {
+                labels: top_names_data,
+                datasets: [{
+                    label: "Books VS payemnts",
+                    data: top_paids_data,
+                    backgroundColor: ['#5DA5DA ', '#FAA43A', '#60BD68',
+                        '#B276B2', '#E16851', '#FB8267'],
+
+                    borderWidth: 1,
+                    hoverBorderColor: "black",
+                    hoverBorderWidth: 2,
+                    hoverBackgroundColor: 'rgba(154, 245, 140)',
+                    pointHoverRadius: 5
+                }],
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: "Income Vs Expenses",
+                    fontSize: 20,
+                },
+                legend: {
+                    position: "right",
+                    labels: {
+                        fontColor: "gray"
+                    },
+                    display: true,
+                },
+
+                elements: {
+                    hitRadius: 3,
+                }
+            }
+        });
+    </script>
+    {% endblock %}
+</div>
+<!-- /.container-fluid -->
+
+<!-- End of Main Content -->
+
+
+{% endblock %}
