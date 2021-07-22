@@ -1,4 +1,4 @@
-# Library-Managemnet-System
+# Library-Managment-System
 
 
 ## **About**
